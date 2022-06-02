@@ -1,0 +1,28 @@
+*{
+    font-family: 'Sen', sans-serif;
+	font-weight: 100;
+}
+
+i {
+    color: #212529;
+}
+
+a {
+    color: #212529;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: 0.5s;
+}
+
+a.dropdown-item {
+    font-size: 1rem;
+}
+
+input.form-control {
+    width: 450px;
+}
+
+button.btn {
+    width: 100px;
+    transition: 0.5s;
+}
