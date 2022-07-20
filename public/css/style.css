@@ -3,6 +3,10 @@
 	font-weight: 100;
 }
 
+body{
+    background-color: #ffc107a0;
+}
+
 i {
     color: #212529;
 }
