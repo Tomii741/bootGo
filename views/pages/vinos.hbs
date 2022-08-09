@@ -1,0 +1,28 @@
+<title>GoMarket::Vinos</title>
+
+<div>
+    <img src="/img/vino.jpg" class="d-block w-100" alt="Tragos" />
+</div>
+
+<div class="container-fluid m-5">
+    <div class="text-center m-5">
+        <h3>Listado de Vinos</h3>
+    </div>
+
+    <table class="table table-hover">
+        <thead>
+            <th>ID Producto</th>
+            <th>Nombre</th>
+            <th>Precio</th>
+        </thead>
+        <tbody>
+            {{#each results}}
+            <tr>
+                <td>{{ productoId }}</td>
+                <td>{{ nombre }}</td>
+                <td>$ {{ precio }}</td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>
