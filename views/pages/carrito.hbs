@@ -1,13 +1,9 @@
-<title>GoMarket::Vinos</title>
 
-<div>
-    <img src="/img/vino.jpg" class="d-block w-100" alt="Tragos" />
+<div class="conteiner text-center">
+    <hr>
+    <h3>Carrito de Compras</h3>
+    <hr>
 </div>
-
-<div class="container-fluid">
-    <div class="text-center m-5">
-        <h3>Listado de Vinos</h3>
-    </div>
 
     <table class="table table-hover">
         <thead>
@@ -20,14 +16,11 @@
             {{#each results}}
             <tr>
                 {{!-- <td>{{ productoId }}</td> --}}
-                <td class="text-center">{{ nombre }}</td>
-                <td class="text-center">$ {{ precio }}</td>
-                <td class="text-center"><input type="text" id="cantidadVinos"></td>
+                <td class="text-center"></td>
+                <td class="text-center"></td>
+                <td class="text-center"><input type="number" min="1" name="cantidadVinos"></td>
                 <td><button type="button" class="btn btn-success" id="comprarVinos" onclick="comprarProducto()">Comprar</button></td>
             </tr>
             {{/each}}
         </tbody>
     </table>
-</div>
-
-<script src="/js/vinos.js"></script>

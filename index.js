@@ -61,6 +61,11 @@ app.get('/vinos', (req, res) => {
     });
 });
 
+app.get('/carrito', (req, res) => {
+
+    res.render('carrito');
+})
+
 app.listen(port, () => {
     console.log('Servidor funcionando');
     console.log('Nombre de la app: ' + app.get('appName'));
