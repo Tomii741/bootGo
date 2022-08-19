@@ -1,0 +1,43 @@
+<title>GoMarket::Carga de Vinos</title>
+
+<div>
+        <img src="/img/vino.jpg" class="d-block w-100" alt="Tragos" />
+</div>
+
+<div class="container">
+
+    <div class="text-center m-5">
+        <hr>
+        <h1>
+            Carga de Producto
+        </h1>
+        <hr>
+    </div>
+
+    <div class="row">
+        <form action="./carga" method="post">
+            <div class="mb-3 row text-center">
+                <label for="nombre" class="col-sm-4 col-form-label">Nombre del Producto:</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" placeholder="Nombre del Producto" name="nombre" id="nombre">
+                </div>
+            </div>
+            <div class="mb-3 row text-center">
+                <label for="precio" class="col-sm-4 col-form-label">Precio:</label>
+                <div class="col-sm-8">
+                    <input type="number" class="form-control " placeholder="Precio" name="precio" id="precio" min="0">
+                </div>
+            </div>
+            <div class="mb-3 text-center">
+                <input type="submit" class="btn btn-primary w-50 p-2" value="Cargar">
+            </div>
+
+            <div class="text-center">
+                <h2 class="text-danger">
+                    {{validacion}}
+                </h2>
+            </div>
+        </form>
+    </div>
+
+</div>

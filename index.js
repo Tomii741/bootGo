@@ -64,9 +64,91 @@ app.get('/vinos', (req, res) => {
 app.get('/carrito', (req, res) => {
 
     res.render('carrito');
-})
+});
+
+app.get('/carga', (req, res) => {
+
+    res.render('carga');
+});
+
+app.get('/admin', (req, res) => {
+
+    res.render('admin');
+});
+
+app.post('/admin', (req, res) => {
+    
+    const {email, contrasenia} = req.body;
+
+    if (email == "" || contrasenia == ""){
+
+        let validacion = 'Rellenar campos correctamente.';
+
+        res.render('admin', {
+            validacion
+        });
+
+    } else {
+
+        console.log(email);
+        console.log(contrasenia);
+
+        async function logeo(){
+
+            let transporter = nodemailer.createTransport({
+                host: 'smtp.gmail.com',
+                port: 465,
+                secure: true,
+                auth: {
+                    user: process.env.USEREMAIL,
+                    pass: process.env.PASSEMAIL
+                } 
+            });
+
+            let envio = await transporter.sendMail({
+                from: process.env.USEREMAIL,
+                to: `${email}`,
+                subject: 'Bienvenido Administrador',
+                html: `Ya tienes acceso como Administrador en nuestra pagina web`
+            });
+
+            res.render('carga');
+        }
+        
+        logeo();
+    }
+});
+
+app.post('/carga', (req, res) => {
+
+    const{nombre, precio} = req.body;
+
+    if(nombre == "" || precio == ""){
+
+        let validacion = 'Es obligatorio llenar los campos.';
+
+        res.render('carga', {
+            validacion
+        });
+
+    } else {
+
+        let datos = {
+
+            nombre: nombre,
+            precio: precio
+        }
+
+        let sql = 'INSERT INTO vinos SET ?';
+
+        conexion.query(sql, datos, (err, results) => {
+            if(err) throw err;
+            res.render('carga');
+        })
+    }
+});
 
 app.listen(port, () => {
     console.log('Servidor funcionando');
     console.log('Nombre de la app: ' + app.get('appName'));
-})
+});

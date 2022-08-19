@@ -1,12 +1,13 @@
 
 console.log('Soy el js de Vinos desde HBS');
 
-let cant = document.getElementById('cantidadVinos');
+// let cant = document.getElementById('cantidadVinos').value;
 
 
 function comprarProducto(){
 
-    // let cantidad = document.getElementsByName('cantidadVinos');
+    let cant = document.getElementById('cantidadVinos').value;
     console.log(`Cantidad de vinos comprados: ${cant}` );
+
 }
 
