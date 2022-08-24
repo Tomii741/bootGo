@@ -15,7 +15,7 @@ const conexion = mysql.createConnection({
     database: process.env.DATABASE
 });
 
-if(conexion.connect()){
+if (conexion.connect()) {
     console.log("Conexion exitosa!!");
 }
 
@@ -37,7 +37,7 @@ hbs.registerPartials(path.join(__dirname, 'views/partials'));
 
 //MIDDLEWARES
 app.use(express.json());
-app.use(express.urlencoded({extended: false}));
+app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 //RUTAS
@@ -50,11 +50,11 @@ app.get('/about', (req, res) => {
 });
 
 app.get('/vinos', (req, res) => {
-    
+
     let sql = 'SELECT * FROM vinos'
 
     conexion.query(sql, (err, result) => {
-        if(err) throw err;
+        if (err) throw err;
         res.render('vinos', {
             results: result,
         });
@@ -77,10 +77,10 @@ app.get('/admin', (req, res) => {
 });
 
 app.post('/admin', (req, res) => {
-    
-    const {email, contrasenia} = req.body;
 
-    if (email == "" || contrasenia == ""){
+    const { email, contrasenia } = req.body;
+
+    if (email == "" || contrasenia == "") {
 
         let validacion = 'Rellenar campos correctamente.';
 
@@ -93,7 +93,7 @@ app.post('/admin', (req, res) => {
         console.log(email);
         console.log(contrasenia);
 
-        async function logeo(){
+        async function logeo() {
 
             let transporter = nodemailer.createTransport({
                 host: 'smtp.gmail.com',
@@ -102,7 +102,7 @@ app.post('/admin', (req, res) => {
                 auth: {
                     user: process.env.USEREMAIL,
                     pass: process.env.PASSEMAIL
-                } 
+                }
             });
 
             let envio = await transporter.sendMail({
@@ -114,16 +114,16 @@ app.post('/admin', (req, res) => {
 
             res.render('carga');
         }
-        
+
         logeo();
     }
 });
 
 app.post('/carga', (req, res) => {
 
-    const{nombre, precio} = req.body;
+    const { nombre, precio } = req.body;
 
-    if(nombre == "" || precio == ""){
+    if (nombre == "" || precio == "") {
 
         let validacion = 'Es obligatorio llenar los campos.';
 
