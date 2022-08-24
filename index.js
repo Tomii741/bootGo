@@ -61,11 +61,6 @@ app.get('/vinos', (req, res) => {
     });
 });
 
-app.get('/carrito', (req, res) => {
-
-    res.render('carrito');
-});
-
 app.get('/carga', (req, res) => {
 
     res.render('carga');
