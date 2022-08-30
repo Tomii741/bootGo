@@ -4,11 +4,12 @@ const path = require('path');
 const hbs = require('hbs');
 const mysql = require('mysql2');
 const nodemailer = require('nodemailer');
+
 const app = express();
 const port = process.env.PORT || 8080;
 
 //CONEXION DB
-const conexion = mysql.createConnection({
+/* const conexion = mysql.createConnection({
     host: process.env.HOST,
     user: process.env.USER,
     password: process.env.PASSWORD,
@@ -25,7 +26,7 @@ conexion.connect((err) => {
         return;
     }
     console.log(`Conectado a la Base de Datos ${process.env.DATABASE}`);
-})
+}) */
 
 //SETINGS
 app.set('appName', 'GoMarket');
@@ -49,7 +50,7 @@ app.get('/about', (req, res) => {
     res.render('about');
 });
 
-app.get('/vinos', (req, res) => {
+/* app.get('/vinos', (req, res) => {
 
     let sql = 'SELECT * FROM vinos'
 
@@ -59,6 +60,10 @@ app.get('/vinos', (req, res) => {
             results: result,
         });
     });
+}); */
+
+app.get('/vinos', (req, res) => {
+    res.render('vinos');
 });
 
 app.get('/carga', (req, res) => {
@@ -85,8 +90,8 @@ app.post('/admin', (req, res) => {
 
     } else {
 
-        console.log(email);
-        console.log(contrasenia);
+        //console.log(email);
+        //console.log(contrasenia);
 
         async function logeo() {
 
@@ -104,7 +109,7 @@ app.post('/admin', (req, res) => {
                 from: process.env.USEREMAIL,
                 to: `${email}`,
                 subject: 'Bienvenido Administrador',
-                html: `Ya tienes acceso como Administrador en nuestra pagina web`
+                html: `Ya tienes acceso como Administrador en nuestra pagina web.`
             });
 
             res.render('carga');
@@ -114,7 +119,7 @@ app.post('/admin', (req, res) => {
     }
 });
 
-app.post('/carga', (req, res) => {
+/* app.post('/carga', (req, res) => {
 
     const { nombre, precio } = req.body;
 
@@ -141,9 +146,31 @@ app.post('/carga', (req, res) => {
             res.render('carga');
         })
     }
+}); */
+
+app.post('/carga', (req, res) => {
+
+    const { nombre, precio } = req.body;
+
+    if (nombre == "" || precio == "") {
+
+        let validacion = 'Es obligatorio llenar los campos.';
+
+        res.render('carga', {
+            validacion
+        });
+
+    } else {
+
+        let validacion = 'Proximamente podras cargar productos en nuestra base de datos. Web en reparacion.'
+
+        res.render('carga', {
+            validacion
+        });
+    }
 });
 
 app.listen(port, () => {
-    console.log('Servidor funcionando');
-    console.log('Nombre de la app: ' + app.get('appName'));
+    /* console.log('Servidor funcionando');
+    console.log('Nombre de la app: ' + app.get('appName')); */
 });
